@@ -1,0 +1,36 @@
+#home {
+    width: var(--app-width);
+
+
+    /*border: black solid 1px;*/
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+#home {
+    justify-content: center;
+}
+.transparent-box {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background-color: rgba(211, 211, 211, 0.5);
+    border-radius: 12px;
+    z-index: 2;
+}
+
+#video-wallpaper{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    /*background: url('https://videos.pexels.com/video-files/8538615/8538615-uhd_2732_1440_25fps.mp4') no-repeat fixed center;*/
+    background-color: #cccccc;
+    object-fit: cover;
+
+}

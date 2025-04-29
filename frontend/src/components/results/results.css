@@ -1,0 +1,31 @@
+
+#result{
+    width: var(--app-width);
+    /*text-align: left;*/
+    margin-top: calc(var(--navbar-height) + 1rem);
+
+
+}
+.dailyplan-box {
+    /*width: 100%;*/
+    background: white;
+    box-shadow: 0 1px 15px -1px rgba(0, 0, 0, 0.75);
+    border-radius: var(--rounded-corner);
+}
+.result_image{
+    /*position: fixed;*/
+    /*left: 0;*/
+    width: var(--app-width);
+    height: 20rem;
+    object-fit: cover;
+    border-radius: var(--rounded-corner);
+    box-shadow: 0 1px 5px -1px rgba(0, 0, 0, .75);
+
+}
+.daily-img{
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    z-index: 2;
+}

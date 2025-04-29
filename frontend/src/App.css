@@ -1,0 +1,22 @@
+:root {
+  --app-width: 1400px;
+  --rounded-corner: 12px;
+}
+@media all and  (max-width: 1399.98px) {
+  :root{
+    --app-width: 100vw;
+
+  }
+}
+#App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #faf8f8;
+}
+#center-app {
+
+}
+
+
+
