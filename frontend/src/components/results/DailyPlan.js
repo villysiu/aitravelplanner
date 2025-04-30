@@ -9,7 +9,7 @@ const DailyPlan = ({plan}) =>{
             <Row>
             { landmarks.map( (landmark, idx)=>{
                 return (
-                    <Col xs={12} md={4} className="mb-4" key={idx}>
+                    <Col xs={12} md={4} className="mb-4 col-print-4" key={idx}>
                         <Card>
                             <Card.Img variant="top" src={landmark.imageUrl} alt={landmark.name} className='daily-img' />
                             <Card.Body>

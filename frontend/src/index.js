@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from "./components/home/Home";
-import TravelPlanner from "./components/results/TravelPlanner";
+import Result from "./components/results/Result";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/results",
-                element: <TravelPlanner/>,
+                element: <Result/>,
             },
         ]
     },
