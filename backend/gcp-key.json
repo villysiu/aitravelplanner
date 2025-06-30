@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "ai-travel-planner-458805",
+  "private_key_id": "7a63aade5205319bc46c1adc9835dc05a822ad1d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDDDzQnZzqpgkZn\nq2yJZ8o/D7ButhoarqH+pgL9bch4Rqwr74IJ74LbH3PGqzch7RZ/QeVTs1UQchE/\nPacfVroC6Lag2UPbvhEv6o8rK/lN3otimJR86ZvqkS741rc2T13KXQ623jkWC2v+\nh5Ph07CoJGW4RXp2i/nUtUuSFJXfiSv+OUhcSVl779PsAHBJHUzQn4YzEbWZbL1L\nhxSujl062wUicHGqvbgEVTtvu8ibsAUYdpVEiF4taP0fSeGeqWYUh4qzC1bggnEf\nCPH9twjswUCFBYC8fQMdAxQLVnJl4Hc4K3rNz41802M9zbY81yIJ+rrv9o4sxsHF\nFp4FaX7fAgMBAAECggEAYJyLLGkIuSR5UqepXnU1yv4uWOeBDm4odkQrfvJ9NHVs\nmWZLdjhXC8kMQv5SlE8lsWol98r++uJEgJo8yFzgTMiOjCSQY6pEQQNgXfWtyU/M\noc0I3sWmIAxAw6c1n4S3458rxo9SnwSRPMRSDqwW93DvoNFo0oaJ+zzAbV4czVX5\nzkzTxnRPTalQVngeTkGdlLvMz/8HE9nWfqPLvPuQKk94SkY8Zy7rLgrlTyHCqkrw\nwC9a63pGfpN1MT437d/PksOKukfZ+hoQIf7mJIYVr7cbuuYjQ16Rhjja9ha7Vr+2\nMSyEgTKwAteqLMOK+aIg+zS5voMkcfcD9Qu/DdBTgQKBgQDuUJAwzDj1ySiAzrFT\nOHKeuDJVnFYcdFY1D/BEM3wbK6lOETq4VuTuXNw8/lGsqMvIdCCxB98U4NnYbsCo\nKY2dkKCU73QjVOLlR2C1sAljiRNE1cueqDOqcN5Z5CJ6ezWbB2nkhxcWG2oile1m\nIrfPwwLIwR0c5Qi/OzEBuXmZjwKBgQDRiONXk4iRXLb/1VkLaXByS9YiBBMFW7go\ndCpex+yVG0eGWHwtgI24S8g2W+g3zc/NYl7z1IRMWjQSAi7dsBpB8vPyBvQipxGB\nlt5GDkyvqMqx4Z9qEHyKEWuqe5uun1eBvVZxGdYUN72hqG42ER91YMKX5yMcodfk\n+qWB2Sz9sQKBgDhs0McNA4uGVlWxGqEmo1TbLefBPU49aU/k9zFes0rHmq2GPM36\nnPem+upiGLp1uNI8VKU1xObvmgS5rFnkhMhCvxKkY24eIh7BOK+r/30Wrn5E1JI7\nJwh68tp7voIbfAS5y6O1LI0qboXD09Kz86t4c8dOmfMGc3y7qg3LeXQXAoGBAIq+\nDGMZ0o0GCjp+h3aR+54C7ygY8ItUvy0yNjgKQ3I73PFtN9RdUfndXBX6Z1pEEjvZ\nziu/5VY1SFNAVM3/5HMUr0jsJ82mOGZJgqZ6o3aQ2p5MWmU9w2kcveDl9iD7a1MC\nDvHW/LTob81SHJ/6WI09Y7x3lP1JgQ4ilWLUbgERAoGBAOMeKMqoUTVsDXH2nuAy\nNLPpGDB2t+/l+Jf2rkgZXQ3mT/apQp1ykKsniocZwDNbp63OnAk8A7IU0EbyNoPW\n1Sws0VRd7bayB4eofeZXaOaaerRJ5TMuimtXiECDpzg+HB7r38AFgVjRWxH4Gss5\nAKr9VQVkPtl7tDQ4QEuu36GF\n-----END PRIVATE KEY-----\n",
+  "client_email": "ai-travel-planner-458805@appspot.gserviceaccount.com",
+  "client_id": "104917894427938333786",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/ai-travel-planner-458805%40appspot.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

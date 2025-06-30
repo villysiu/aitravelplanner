@@ -1,106 +1,71 @@
 
-require('dotenv').config();
-const { createClient } = require('pexels');
-
 const express = require('express');
-const axios = require('axios');
 const cors = require('cors');
-const {samplePlan} = require("./samplePlan");
-
+// const {samplePlan} = require("./samplePlan");
+const { fetchImage } = require('./pexels/getImages')
+const {post} = require("axios");
+const {fetchSecret} = require("./google/getSecret");
 
 const app = express();
 const PORT = 8080;
 
-// Initialize Pexels client
-// console.log('Pexels Key:', process.env.PEXELS_API_KEY);
-const pexelsClient = createClient(process.env.PEXELS_API_KEY);
 
-app.use(cors());
+
+// app.use(cors());
+// Enable CORS for your frontend URL (you can add more origins if needed)
+app.use(cors({
+    // origin: 'http://localhost:3000',  // Allow requests from your frontend (localhost)
+    origin: 'https://ai-travel-planner-821de.web.app',
+    methods: ['POST'],        // You can adjust allowed methods here
+    allowedHeaders: ['Content-Type', 'Authorization'],  // Customize based on your needs
+}));
 app.use(express.json());
 
-// 🗃  in-memory cache for landmark images
-const imageCache = {};
-
-async function fetchImage(landmark) {
-
-    // Check if image is already cached
-    if (imageCache[landmark]) {
-        console.log(`Cache hit for: ${landmark}`);
-        return imageCache[landmark];
-    }
 
 
-    // Not cached, fetch from Pexels
-    console.log(`Cache miss. Fetching from Pexels: ${landmark}`);
-    try {
-        const response = await pexelsClient.photos.search({ query: landmark, per_page: 1 });
-
-        const photo = response.photos[0];
-
-        const imageUrl = photo ? photo.src.medium : null;
-
-        // Save to cache
-        if (imageUrl) {
-            imageCache[landmark] = imageUrl;
-        }
-
-        return imageUrl;
-    } catch (error) {
-        console.error(`Error fetching image for ${landmark}:`, error.message);
-        return null;
-    }
-}
 
 // Endpoint: Generate Itinerary
 app.post('/api/itinerary', async (req, res) => {
     const { destination } = req.body;
 
-    console.log(destination)
-//     const prompt = `
-//     Create a 3-day travel itinerary for Tokyo in JSON format.
-// Include fields:
-// - Destination
-// - 100 words description of country, culture and weather
-// - itineraries (array of { day in number, description, 2-4 landmarks (array of {name, description} ) }).
-// Output only pure JSON without extra commentary.
-//   `;
+
     const prompt = `
-  Create a travel plan for ${destination} in JSON format.
+  Create a travel plan for ${destination} in JSON format. Default 3 days and 2 adults if not mentioned.
   Include fields:
   - Destination
   - 100 words description of country, culture, and weather
-  - Itineraries (array of { day in number, description, 2-4 landmarks (array of { name, description } ) }).
+  - Itineraries (array of { day in number, description, 3-5 popular visitor favoriote  (array of { name, description } ) }).
   Output only pure JSON without extra commentary.
 `;
 
 console.log(prompt)
     try {
+            // Get OpenAi api key
+        const apiKey = await fetchSecret('OPENAI_API_KEY');
+        console.log(`Authorization header: Bearer ${apiKey}`);
         // Ask ChatGPT
-        // const chatResponse = await axios.post(
-        //     'https://api.openai.com/v1/chat/completions',
-        //     {
-        //         model: 'gpt-3.5-turbo',
-        //         messages: [{ role: 'user', content: prompt }],
-        //         temperature: 0.7
-        //     },
-        //     {
-        //         headers: {
-        //             Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-        //             'Content-Type': 'application/json'
-        //         }
-        //     }
-        // );
-        //
-        // let itinerary = JSON.parse(chatResponse.data.choices[0].message.content);
+        const chatResponse = await post(
+            'https://api.openai.com/v1/chat/completions',
+            {
+                model: 'gpt-3.5-turbo',
+                messages: [{ role: 'user', content: prompt }],
+                temperature: 0.7
+            },
+            {
+                headers: {
+                    // Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+                    Authorization: `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                }
+            }
+        );
+
+        let itinerary = JSON.parse(chatResponse.data.choices[0].message.content);
 
         // sample plan
         // let itinerary = null;
-        setTimeout(async()=>{
-           const itinerary = samplePlan;
-
-
-
-
+        // setTimeout(async()=>{
+        //    const itinerary = samplePlan;
 
         itinerary.imageUrl = await fetchImage(itinerary.destination);
 
@@ -108,14 +73,13 @@ console.log(prompt)
         for (const day of itinerary.itineraries) {
             for (let i = 0; i < day.landmarks.length; i++) {
                 const landmark = day.landmarks[i];
-                // const imageUrl = await fetchImage(landmark.name);
-                const imageUrl=null;
+                const imageUrl = await fetchImage(landmark.name);
                 day.landmarks[i] = { name: landmark.name, description: landmark.description, imageUrl: imageUrl };
             }
         }
 
         res.json(itinerary);
-            }, 5000)
+            // }, 5000)
 
     } catch (error) {
         console.error(error.response ? error.response.data : error.message);
