@@ -6,6 +6,8 @@ import {Form, InputGroup} from 'react-bootstrap';
 import {Search} from "react-bootstrap-icons";
 import LoadingOverlay from "./LoadingOverlay";
 
+import {apiLink} from "../api";
+
 const SearchBar = () => {
     const [destination, setDestination] = useState('');
     const [loading, setLoading] = useState(false);
@@ -18,7 +20,7 @@ const SearchBar = () => {
         }
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:8080/api/itinerary', { destination });
+            const response = await axios.post(`${apiLink}/api/itinerary`, { destination });
             navigate('/results', { state: { plan: response.data } }); // use response.data
 
 
