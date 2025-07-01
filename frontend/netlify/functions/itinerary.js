@@ -68,13 +68,43 @@ exports.handler = async function (event, context) {
     const { destination } = JSON.parse(event.body);
 
     const prompt = `
-        Create a travel plan for ${destination} in JSON format. Default 3 days and 2 adults if not mentioned.
-        Include fields:
-        - Destination
-        - 100 words description of country, culture, and weather
-        - Itineraries (array of { day in number, description, 3-5 popular visitor favoriote  (array of { name, description } ) }).
-        Output only pure JSON without extra commentary.
-    `;
+You are a travel assistant.
+
+Create a travel plan for the following input:
+Destination: "${destination}"
+
+Instructions:
+- If no number of days or travelers is mentioned, assume 3 days and 2 adults.
+- Return only a strict **JSON object** (no extra text or markdown).
+- Use the following fixed structure:
+
+{
+  "destination": "string",
+  "description": "100-word overview of the country's culture, climate, and travel vibe.",
+  "itineraries": [
+    {
+      "day": 1,
+      "description": "Summary of the day in 1-2 sentences.",
+      "landmarks": [
+        {
+          "name": "Landmark name",
+          "description": "1-2 sentence description"
+        }
+        // Include 3 to 5 items in this array
+      ]
+    }
+    // Repeat one object per day of the trip
+  ]
+}
+
+Rules:
+- The "itineraries" array must have one object per day.
+- Each "landmarks" array must include 3–5 places.
+- Keys and structure must be consistent and match exactly.
+- Output only valid JSON with no comments or extra explanations.
+`;
+
+
 
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -108,11 +138,11 @@ exports.handler = async function (event, context) {
           for (let i = 0; i < day.landmarks.length; i++) {
               const landmark = day.landmarks[i];
               const imageUrl = await fetchImage(landmark.name);
-              day.landmarks[i] = { name: landmark.name, description: landmark.description, imageUrl: imageUrl };
+              day.landmarks[i] = { ...day.landmarks[i], imageUrl: imageUrl };
+
+              // day.landmarks[i] = { name: landmark.name, description: landmark.description, imageUrl: imageUrl };
           }
       }
-
-      // res.json(itinerary);
 
     return {
       statusCode: 200,
