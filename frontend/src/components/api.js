@@ -4,4 +4,4 @@
 //firebase
 // export const homeLink = "https://ai-travel-planner-821de.web.app/"
 
-export const netlifyLink = ""
+export const netlifyLink = "aitravelplanner-villy.netlify.app"
