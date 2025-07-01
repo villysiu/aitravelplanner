@@ -6,7 +6,7 @@ import {Form, InputGroup} from 'react-bootstrap';
 import {Search} from "react-bootstrap-icons";
 import LoadingOverlay from "./LoadingOverlay";
 
-import {netlifyLink} from "../api";
+
 
 const SearchBar = () => {
     const [destination, setDestination] = useState('');
