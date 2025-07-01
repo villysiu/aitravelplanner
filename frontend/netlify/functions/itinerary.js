@@ -98,6 +98,7 @@ exports.handler = async function (event, context) {
 
     const data = await response.json();
     let itinerary = JSON.parse(data.choices[0].message.content);
+    console.log("Itinerary:", JSON.stringify(itinerary, null, 2));
 
 
       itinerary.imageUrl = await fetchImage(itinerary.destination);
