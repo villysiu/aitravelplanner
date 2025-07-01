@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.df01c4c2.css",
-    "main.js": "/static/js/main.ebe5c70d.js",
-    "static/js/453.8ab44547.chunk.js": "/static/js/453.8ab44547.chunk.js",
-    "index.html": "/index.html",
-    "main.df01c4c2.css.map": "/static/css/main.df01c4c2.css.map",
-    "main.ebe5c70d.js.map": "/static/js/main.ebe5c70d.js.map",
-    "453.8ab44547.chunk.js.map": "/static/js/453.8ab44547.chunk.js.map"
+    "main.css": "/aitravelplanner/static/css/main.df01c4c2.css",
+    "main.js": "/aitravelplanner/static/js/main.8c6854a1.js",
+    "static/js/453.6df3d2ed.chunk.js": "/aitravelplanner/static/js/453.6df3d2ed.chunk.js",
+    "index.html": "/aitravelplanner/index.html",
+    "main.df01c4c2.css.map": "/aitravelplanner/static/css/main.df01c4c2.css.map",
+    "main.8c6854a1.js.map": "/aitravelplanner/static/js/main.8c6854a1.js.map",
+    "453.6df3d2ed.chunk.js.map": "/aitravelplanner/static/js/453.6df3d2ed.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.df01c4c2.css",
-    "static/js/main.ebe5c70d.js"
+    "static/js/main.8c6854a1.js"
   ]
 }

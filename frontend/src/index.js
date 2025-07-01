@@ -24,8 +24,11 @@ const router = createBrowserRouter([
         ]
     },
 
-
-])
+],
+        {
+            basename: "/aitravelplanner", // 👈 ADD THIS
+        }
+)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

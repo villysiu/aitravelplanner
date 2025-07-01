@@ -1,4 +1,3 @@
-import {Nav} from "react-bootstrap";
 import Navbar from "../navbar/Navbar";
 import AITrip from "./AITrip";
 
