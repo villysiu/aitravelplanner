@@ -16,7 +16,18 @@ exports.handler = async function (event, context) {
       },
       body: ""
     };
+    
   }
+  
+  // if (event.httpMethod !== "POST") {
+  //   return {
+  //     statusCode: 405,
+  //     headers: {
+  //       "Access-Control-Allow-Origin": "https://villysiu.github.io",
+  //     },
+  //     body: "Method Not Allowed"
+  //   };
+  // }
 
   async function fetchImage(landmark) {
     

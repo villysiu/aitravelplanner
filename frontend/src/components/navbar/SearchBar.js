@@ -21,7 +21,7 @@ const SearchBar = () => {
         setLoading(true);
         try {
             const response = await axios.post(
-                `${netlifyLink}/.netlify/functions/itinerary`, 
+                `https://aitravelplanner-villy.netlify.app/.netlify/functions/itinerary`, 
                 { 
                     destination 
                 }
