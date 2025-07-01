@@ -19,15 +19,16 @@ exports.handler = async function (event, context) {
     
   }
   
-  // if (event.httpMethod !== "POST") {
-  //   return {
-  //     statusCode: 405,
-  //     headers: {
-  //       "Access-Control-Allow-Origin": "https://villysiu.github.io",
-  //     },
-  //     body: "Method Not Allowed"
-  //   };
-  // }
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      headers: {
+        "Access-Control-Allow-Origin": "https://villysiu.github.io",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+      },
+      body: "Method Not Allowed"
+    };
+  }
 
   async function fetchImage(landmark) {
     
@@ -120,13 +121,14 @@ exports.handler = async function (event, context) {
       body: JSON.stringify(itinerary)
     };
   } catch (error) {
+    console.error("Function error:", error);
     return {
       statusCode: 500,
       headers: {
         "Access-Control-Allow-Origin":  "*",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ error: "Something went wrong." }),
+      body: JSON.stringify({ error: error.message || "Something went wrong." }),
     };
   }
 };
