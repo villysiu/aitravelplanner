@@ -117,7 +117,7 @@ exports.handler = async function (event, context) {
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin":  "*",
+        "Access-Control-Allow-Origin":  "https://villysiu.github.io",
       },
       body: JSON.stringify(itinerary)
     };
@@ -126,7 +126,7 @@ exports.handler = async function (event, context) {
     return {
       statusCode: 500,
       headers: {
-        "Access-Control-Allow-Origin":  "*",
+        "Access-Control-Allow-Origin":  "https://villysiu.github.io",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({ error: error.message || "Something went wrong." }),
