@@ -4,6 +4,8 @@ const PEXELS_API_KEY = process.env.PEXELS_API_KEY;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
 const imageCache = new Map(); // In-memory cache
+
+
 exports.handler = async function (event, context) {
   if (event.httpMethod === "OPTIONS") {
     // Preflight CORS request
@@ -67,42 +69,63 @@ exports.handler = async function (event, context) {
   try {
     const { destination } = JSON.parse(event.body);
 
+    const mcpContext = {
+      user: {
+        // You can add location/language from frontend later
+        location: null,
+        language: "en"
+      },
+      input: {
+        destination,
+        days: 3,
+        travelers: 2
+      },
+      aiOutput: null, // Will be filled by OpenAI later
+      metadata: {
+        generatedAt: new Date().toISOString(),
+        imageSources: ["pexels.com"]
+      }
+    };
+
+
     const prompt = `
-You are a travel assistant.
+      You are a travel assistant.
 
-Create a travel plan for the following input:
-Destination: "${destination}"
+      Create a travel plan for the following input:
+      Destination: "${mcpContext.input.destination}"
+      Days: ${mcpContext.input.days}
+      Travelers: ${mcpContext.input.travelers}
 
-Instructions:
-- If no number of days or travelers is mentioned, assume 3 days and 2 adults.
-- Return only a strict **JSON object** (no extra text or markdown).
-- Use the following fixed structure:
+      Instructions:
+      - If no number of days or travelers is mentioned, assume 3 days and 2 adults.
+      - Return only a strict **JSON object** (no extra text or markdown).
+      - Use the following fixed structure:
 
-{
-  "destination": "string",
-  "description": "100-word overview of the country's culture, climate, and travel vibe.",
-  "itineraries": [
-    {
-      "day": 1,
-      "description": "Summary of the day in 1-2 sentences.",
-      "landmarks": [
-        {
-          "name": "Landmark name",
-          "description": "1-2 sentence description"
-        }
-        // Include 3 to 5 items in this array
-      ]
-    }
-    // Repeat one object per day of the trip
-  ]
-}
+      {
+        "destination": "string",
+        "description": "100-word overview of the country's culture, climate, and travel vibe.",
+        "itineraries": [
+          {
+            "day": 1,
+            "description": "Summary of the day in 1-2 sentences.",
+            "landmarks": [
+              {
+                "name": "Landmark name",
+                "description": "1-2 sentence description"
+              }
+              // Include 3 to 5 items in this array
+            ]
+          }
+          // Repeat one object per day of the trip
+        ]
+      }
 
-Rules:
-- The "itineraries" array must have one object per day.
-- Each "landmarks" array must include 3–5 places.
-- Keys and structure must be consistent and match exactly.
-- Output only valid JSON with no comments or extra explanations.
-`;
+      Rules:
+      - The "itineraries" array must have one object per day.
+      - Each "landmarks" array must include 3-5 places.
+      - Keys and structure must be consistent and match exactly.
+      - Output only valid JSON with no comments or extra explanations.
+      `;
 
 
 
@@ -127,14 +150,17 @@ Rules:
 
 
     const data = await response.json();
-    let itinerary = JSON.parse(data.choices[0].message.content);
-    console.log("Itinerary:", JSON.stringify(itinerary, null, 2));
+    const parsedOutput = JSON.parse(data.choices[0].message.content);
+    console.log("Itinerary:", JSON.stringify(parsedOutput, null, 2));
+
+    // Store the AI output into mcpContext
+    mcpContext.aiOutput = parsedOutput;
 
 
-      itinerary.imageUrl = await fetchImage(itinerary.destination);
+      mcpContext.aiOutput.imageUrl = await fetchImage(mcpContext.aiOutput.destination);
 
       // Fetch images for each landmark
-      for (const day of itinerary.itineraries) {
+      for (const day of mcpContext.aiOutput.itineraries) {
           for (let i = 0; i < day.landmarks.length; i++) {
               const landmark = day.landmarks[i];
               const imageUrl = await fetchImage(landmark.name);
@@ -149,7 +175,7 @@ Rules:
       headers: {
         "Access-Control-Allow-Origin":  "https://villysiu.github.io",
       },
-      body: JSON.stringify(itinerary)
+      body: JSON.stringify(mcpContext)
     };
   } catch (error) {
     console.error("Function error:", error);
