@@ -1,6 +1,6 @@
 import './home.css'
 import Logo from "../navbar/Logo";
-import SearchBar from "../navbar/SearchBar";
+import SearchBar from "../searchbar/SearchBar";
 // import world from
 const Home = () => {
     return(

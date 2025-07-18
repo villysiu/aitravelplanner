@@ -1,5 +1,5 @@
 import './navbar.css'
-import SearchBar from "./SearchBar";
+import SearchBar from "../searchbar/SearchBar";
 import Logo from "./Logo";
 import {Col, Row} from "react-bootstrap";
 import {Link} from "react-router-dom";

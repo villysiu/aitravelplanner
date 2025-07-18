@@ -3,24 +3,7 @@
     --search-button-hover-color: #eae9e9;
     --navbar-height: 10rem;
 }
-#search{
-    width: 100%;
-}
-.search-btn{
-    border: var(--bs-border-width) solid var(--search-button-color);
-    background-color: var(--search-button-color);
-    width: 100%;
-    padding: .375rem .75rem;
-    border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0;
-}
-.search-btn:hover {
-    background-color: var(--search-button-hover-color);
-    border: var(--bs-border-width) solid var(--search-button-hover-color);
-}
-.search-btn:disabled {
-    cursor: not-allowed; /* Changes the cursor to a "no entry" sign */
-    background-color: var(--search-button-color);
-}
+
 
 .input-group-text {
     padding:0;
@@ -64,10 +47,7 @@
 .logo-col {
 
 }
-.search-bar-row > *  {
-    padding-right: calc(var(--bs-gutter-x) * .2) !important;
-    padding-left: calc(var(--bs-gutter-x) * .2) !important;
-}
+
 @media all and  (max-width: 767.98px) {
 
     #navbar {
@@ -85,83 +65,4 @@
 }
 
 
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    cursor: wait;
-}
 
-.search-input {
-    width: 100%;
-    height: 3rem;
-    background-color: white !important;
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    color: var(--bs-body-color) !important;
-    display: flex;
-        justify-content: flex-start;
-    align-items: center;
-    padding: 0 8px 0 0;
-}
-.search-input:hover, .search-input:active{
-    color: var(--bs-body-color);
-}
-.search-input::after {
-  display: none !important;
-}
-.search-input-icon {
-    width: 2.5rem;
-
-}
-.search-inpit-text{
-    text-align: left;
-}
-
-.serach-input-dropdown {
-    /* width: calc(var(--app-width) / 5); */
-    
-    padding: 0.25rem;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-
-}
-@media all and  (max-width: 575.98px) {
-    .serach-input-dropdown {
-        width: calc(var(--app-width) * 0.9 - 4rem);
-    }
-}
-.btn-wrapper {
-    display: flex;
-    justify-content: center; 
-    align-items: center;    
-    width: 2rem; 
-    height: 2rem;
-    margin: 0 0.75rem;
-}
-.plus-btn, .minus-btn {
-    width: 2rem; 
-    height: 2rem;
-}
-
-.plus-btn:hover, .minus-btn:hover {
-    background-color: rgb(222, 247, 247);
-    border-radius: 50%;
-
-}
-.day-input {
-    font-size: 16px;
-    min-width: 1.5rem;
-    display: flex;
-    justify-content: center; 
-    align-items: center;    
-    /* font-weight: bold; */
-}

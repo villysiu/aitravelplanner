@@ -1,5 +1,5 @@
 import React from 'react';
-import './navbar.css';
+import './searchbar.css';
 import {Spinner} from "react-bootstrap"; // Styles for overlay
 
 const LoadingOverlay = () => (
