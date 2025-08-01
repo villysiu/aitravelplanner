@@ -17,32 +17,41 @@ const DayInput = ({dayCount, setDayCount, }) => {
         }
     }
     return (
-        <Dropdown>
-                        <Dropdown.Toggle  id="dropdown-basic" className='search-input'>
-                            <span className='search-input-icon'><Person size={24}/></span>
-                            <span className='search-input-text'>
-                                <div style={{'fontSize': '10px'}}>Days</div>
-                                <div>{dayCount} Days</div>
-                            </span>
-                            
-                        </Dropdown.Toggle>
+        <Dropdown 
+        // show={show} onToggle={handleToggle}
+        >
+                <Dropdown.Toggle as="div" className="p-2 border border-success rounded" className='custom-dropdown-toggle'>
+                    <span className='custom-dropdown-toggle-icon-wrapper'><Person size={24}/></span>
+                    <span className='custom-dropdown-toggle-right'>
 
-                        <Dropdown.Menu>
+                        <div style={{'fontSize': '10px'}}>Number od days</div>
+                        <input
+                            type="text"
+                            value={dayCount}
+                            placeholder="2 Days"
+                            className="form-control dest-input-box"
+                           
+                      
+                        />
+                    </span>
+                </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+        
+                <div className='day-input-dropdown'>
+                    <span className='btn-wrapper'><DashCircle className='minus-btn' onClick={()=>handleDay('-')}/></span>
+    
+                    <span className='day-input'>{dayCount}</span>
+                    <span className='btn-wrapper'><PlusCircle className='plus-btn' onClick={()=>handleDay('+')} /></span>
                     
-                            <div className='serach-input-dropdown'>
-                                <span className='btn-wrapper'><DashCircle className='minus-btn' onClick={()=>handleDay('-')}/></span>
+                    
+                    
+                </div>
+                { error && 
+                <div> {error}</div>}
                 
-                                <span className='day-input'>{dayCount}</span>
-                                <span className='btn-wrapper'><PlusCircle className='plus-btn' onClick={()=>handleDay('+')} /></span>
-                                
-                                
-                                
-                            </div>
-                            { error && 
-                            <div> {error}</div>}
-                            
-                        </Dropdown.Menu>
-                    </Dropdown>
+            </Dropdown.Menu>
+        </Dropdown>
     )
 }
 export default DayInput
