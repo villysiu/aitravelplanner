@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 
 ],
         {
-            basename: "/aitravelplanner", // 👈 ADD THIS
+            basename: "/aitravelplanner", 
         }
 )
 
