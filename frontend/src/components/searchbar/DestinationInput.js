@@ -5,7 +5,7 @@ import Papa from "papaparse";
 
 const DestinationInput = ({destination, setDestination}) => {
     const [error, setError] = useState(''); 
-    const [inputValue, setInputValue] = useState('');
+    // const [inputValue, setInputValue] = useState('');
     const [show, setShow] = useState(false);
 
     const [cities, setCities] = useState([]);
@@ -65,7 +65,7 @@ const DestinationInput = ({destination, setDestination}) => {
     const handleInputChange = (e) => {
         const value = e.target.value;
 
-        setInputValue(value);
+        setDestination(value);
         console.log(value);
         setFilteredCities([]);
         
@@ -96,7 +96,7 @@ const DestinationInput = ({destination, setDestination}) => {
                         <div style={{'fontSize': '10px'}}>Where to?</div>
                         <input
                             type="text"
-                            value={inputValue}
+                            value={destination}
                             placeholder="Type to search..."
                             className="form-control dest-input-box"
                             onChange={(e) => handleInputChange(e)}
@@ -113,7 +113,7 @@ const DestinationInput = ({destination, setDestination}) => {
                                 return(
                                     <Dropdown.Item className='custom-dropdown-item'
                                         onClick={() => {
-                                            setInputValue(city);
+                                            setDestination(city);
                                             setShow(false); 
                                             setFilteredCities([`${city}`])
                                         }}
@@ -123,7 +123,7 @@ const DestinationInput = ({destination, setDestination}) => {
                                 )
                             })
                         ) : (
-                            inputValue.length >= 3 ? (
+                            destination.length >= 3 ? (
                                 <> No Match</>
                             ) : (
                                 <>
@@ -132,7 +132,7 @@ const DestinationInput = ({destination, setDestination}) => {
                                     return(
                                         <Dropdown.Item className='custom-dropdown-item'
                                             onClick={() => {
-                                            setInputValue(city);
+                                            setDestination(city);
                                             setShow(false); 
                                             setFilteredCities([`${city}`])
                                         }}>

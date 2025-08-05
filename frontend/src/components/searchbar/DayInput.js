@@ -1,5 +1,5 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import {PlusCircle, DashCircle, Person} from 'react-bootstrap-icons'
+import {PlusCircle, DashCircle, Calendar2Week} from 'react-bootstrap-icons'
 import {useState} from 'react';
 const DayInput = ({dayCount, setDayCount, }) => {
 
@@ -17,14 +17,12 @@ const DayInput = ({dayCount, setDayCount, }) => {
         }
     }
     return (
-        <Dropdown 
-        // show={show} onToggle={handleToggle}
-        >
+        <Dropdown >
                 <Dropdown.Toggle as="div" className="p-2 border border-success rounded" className='custom-dropdown-toggle'>
-                    <span className='custom-dropdown-toggle-icon-wrapper'><Person size={24}/></span>
+                    <span className='custom-dropdown-toggle-icon-wrapper'><Calendar2Week size={24}/></span>
                     <span className='custom-dropdown-toggle-right'>
 
-                        <div style={{'fontSize': '10px'}}>Number od days</div>
+                        <div style={{'fontSize': '10px'}}>Days</div>
                         <input
                             type="text"
                             value={dayCount}
@@ -36,7 +34,7 @@ const DayInput = ({dayCount, setDayCount, }) => {
                     </span>
                 </Dropdown.Toggle>
 
-            <Dropdown.Menu>
+            <Dropdown.Menu style={{'minWidth': 0}}>
         
                 <div className='day-input-dropdown'>
                     <span className='btn-wrapper'><DashCircle className='minus-btn' onClick={()=>handleDay('-')}/></span>
