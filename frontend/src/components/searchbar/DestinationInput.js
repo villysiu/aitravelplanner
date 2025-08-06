@@ -1,11 +1,11 @@
 import {GeoAlt} from 'react-bootstrap-icons';
-import {Form, Dropdown} from 'react-bootstrap';
+import {Dropdown} from 'react-bootstrap';
 import {useState, useEffect} from 'react';
 import Papa from "papaparse";
 
 const DestinationInput = ({destination, setDestination}) => {
-    const [error, setError] = useState(''); 
-    // const [inputValue, setInputValue] = useState('');
+    // const [error, setError] = useState(''); 
+
     const [show, setShow] = useState(false);
 
     const [cities, setCities] = useState([]);

@@ -1,6 +1,5 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import {PlusCircle, DashCircle, Balloon} from 'react-bootstrap-icons'
-import {useState} from 'react';
+import {Balloon} from 'react-bootstrap-icons'
 import {Form, Row, Col} from 'react-bootstrap';
 
 const ThemesInput = ({themes, setThemes, }) => {
@@ -22,7 +21,7 @@ const ThemesInput = ({themes, setThemes, }) => {
         <Dropdown 
         // show={show} onToggle={handleToggle}
         >
-                <Dropdown.Toggle as="div" className="p-2 border border-success rounded" className='custom-dropdown-toggle'>
+                <Dropdown.Toggle as="div" className="p-2 border border-success rounded custom-dropdown-toggle">
                     <span className='custom-dropdown-toggle-icon-wrapper'><Balloon size={24}/></span>
                     <span className='custom-dropdown-toggle-right'>
 

@@ -8,8 +8,6 @@ import ThemesInput from './ThemesInput';
 
 import {Search} from "react-bootstrap-icons";
 import LoadingOverlay from "./LoadingOverlay";
-import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
 import {Col, Row} from 'react-bootstrap';
 
 
