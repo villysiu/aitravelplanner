@@ -68,9 +68,7 @@ const SearchBar = () => {
                     <Col xs={12} sm={1} className="mt-3 mt-sm-0">
                         <div className='search-btn-container'>
 
-                            <Search size={24} className='search-icon'
-                            // onClick={handlePlan}
-                        />
+                            <Search size={24} className='search-icon' onClick={handlePlan} />
                         </div>
                     </Col>
                 </Row>

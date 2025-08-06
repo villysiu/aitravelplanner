@@ -18,21 +18,21 @@ const DayInput = ({dayCount, setDayCount, }) => {
     }
     return (
         <Dropdown >
-                <Dropdown.Toggle as="div" className="p-2 border border-success rounded" className='custom-dropdown-toggle'>
-                    <span className='custom-dropdown-toggle-icon-wrapper'><Calendar2Week size={24}/></span>
-                    <span className='custom-dropdown-toggle-right'>
+            <Dropdown.Toggle as="div" className="p-2 border border-success rounded custom-dropdown-toggle">
+                <span className='custom-dropdown-toggle-icon-wrapper'><Calendar2Week size={24}/></span>
+                <span className='custom-dropdown-toggle-right'>
 
-                        <div style={{'fontSize': '10px'}}>Days</div>
-                        <input
-                            type="text"
-                            value={dayCount}
-                            placeholder="2 Days"
-                            className="form-control dest-input-box"
-                           
-                      
-                        />
-                    </span>
-                </Dropdown.Toggle>
+                    <div style={{'fontSize': '10px'}}>Days</div>
+                    <input
+                        type="text"
+                        value={dayCount}
+                        placeholder="2 Days"
+                        className="form-control dest-input-box"
+                        
+                    
+                    />
+                </span>
+            </Dropdown.Toggle>
 
             <Dropdown.Menu style={{'minWidth': 0}}>
         

@@ -7,6 +7,9 @@ const imageCache = new Map(); // In-memory cache
 
 
 exports.handler = async function (event, context) {
+  if (!PEXELS_API_KEY || !OPENAI_API_KEY) {
+    throw new Error("Missing API keys. Check environment variables.");
+  }
   if (event.httpMethod === "OPTIONS") {
     // Preflight CORS request
     return {
@@ -67,7 +70,7 @@ exports.handler = async function (event, context) {
 }
 
   try {
-    const { destination } = JSON.parse(event.body);
+    const { destination, dayCount, themes } = JSON.parse(event.body);
 
     const mcpContext = {
       user: {
@@ -77,8 +80,9 @@ exports.handler = async function (event, context) {
       },
       input: {
         destination,
-        days: 3,
-        travelers: 2
+        dayCount,
+        themes
+        
       },
       aiOutput: null, // Will be filled by OpenAI later
       metadata: {
@@ -93,11 +97,11 @@ exports.handler = async function (event, context) {
 
       Create a travel plan for the following input:
       Destination: "${mcpContext.input.destination}"
-      Days: ${mcpContext.input.days}
-      Travelers: ${mcpContext.input.travelers}
+      Days: ${mcpContext.input.dayCount}
+      Themes: ${mcpContext.input.themes.join(", ")}
 
       Instructions:
-      - If no number of days or travelers is mentioned, assume 3 days and 2 adults.
+      - If no number of days or travelers is mentioned, assume 3 days.
       - Return only a strict **JSON object** (no extra text or markdown).
       - Use the following fixed structure:
 
@@ -150,8 +154,16 @@ exports.handler = async function (event, context) {
 
 
     const data = await response.json();
-    const parsedOutput = JSON.parse(data.choices[0].message.content);
-    console.log("Itinerary:", JSON.stringify(parsedOutput, null, 2));
+    // const parsedOutput = JSON.parse(data.choices[0].message.content);
+
+    let parsedOutput;
+    try {
+      parsedOutput = JSON.parse(data.choices[0].message.content);
+    } catch (err) {
+      console.error("Failed to parse JSON from OpenAI:", data.choices[0].message.content);
+      throw new Error("Invalid JSON from OpenAI");
+    }
+    // console.log("Itinerary:", JSON.stringify(parsedOutput, null, 2));
 
     // Store the AI output into mcpContext
     mcpContext.aiOutput = parsedOutput;
@@ -166,7 +178,6 @@ exports.handler = async function (event, context) {
               const imageUrl = await fetchImage(landmark.name);
               day.landmarks[i] = { ...day.landmarks[i], imageUrl: imageUrl };
 
-              // day.landmarks[i] = { name: landmark.name, description: landmark.description, imageUrl: imageUrl };
           }
       }
 
@@ -174,6 +185,8 @@ exports.handler = async function (event, context) {
       statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin":  "https://villysiu.github.io",
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "POST, OPTIONS"
       },
       body: JSON.stringify(mcpContext)
     };

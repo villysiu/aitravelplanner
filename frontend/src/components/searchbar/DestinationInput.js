@@ -89,7 +89,7 @@ const DestinationInput = ({destination, setDestination}) => {
         <>
 
             <Dropdown show={show} onToggle={handleToggle}>
-                <Dropdown.Toggle as="div" className="p-2 border border-success rounded" className='custom-dropdown-toggle'>
+                <Dropdown.Toggle as="div" className="p-2 border border-success rounded custom-dropdown-toggle">
                     <span className='custom-dropdown-toggle-icon-wrapper'><GeoAlt size={24}/></span>
                     <span className='custom-dropdown-toggle-right'>
 
