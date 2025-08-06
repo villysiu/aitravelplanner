@@ -17,7 +17,7 @@ const SearchBar = () => {
     const [themes, setThemes] = useState([]);
 
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
+    // const [error, setError] = useState('');
     const navigate = useNavigate();
 
     
@@ -27,7 +27,7 @@ const SearchBar = () => {
             return; // Prevent running the function if destination is empty
         }
         setLoading(true);
-        setError('');
+        // setError('');
         try {
             const response = await axios.post(
                 "https://aitravelplanner-villy.netlify.app/.netlify/functions/itinerary", 
@@ -42,7 +42,7 @@ const SearchBar = () => {
 
         } catch (error) {
             console.error(error);
-            setError("Oops! Something went wrong.");
+            // setError("Oops! Something went wrong.");
             // setPlan('Error generating itinerary');
         } finally {
             setLoading(false);
