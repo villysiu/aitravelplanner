@@ -73,7 +73,7 @@ const DestinationInput = ({destination, setDestination}) => {
             setShow(true);
 
         if (value.length >= 3) {
-            setError('');
+            // setError('');
             const matches = cities.filter((city) =>
                 city.toLowerCase().includes(value.toLowerCase())
             );
