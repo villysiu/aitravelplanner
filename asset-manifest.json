@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/aitravelplanner/static/css/main.978eecb5.css",
+    "main.css": "/aitravelplanner/static/css/main.2b77d54a.css",
     "main.js": "/aitravelplanner/static/js/main.739c5f66.js",
     "index.html": "/aitravelplanner/index.html",
-    "main.978eecb5.css.map": "/aitravelplanner/static/css/main.978eecb5.css.map",
+    "main.2b77d54a.css.map": "/aitravelplanner/static/css/main.2b77d54a.css.map",
     "main.739c5f66.js.map": "/aitravelplanner/static/js/main.739c5f66.js.map"
   },
   "entrypoints": [
-    "static/css/main.978eecb5.css",
+    "static/css/main.2b77d54a.css",
     "static/js/main.739c5f66.js"
   ]
 }
