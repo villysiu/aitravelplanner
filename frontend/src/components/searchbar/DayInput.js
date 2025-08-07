@@ -1,6 +1,6 @@
 import Dropdown from 'react-bootstrap/Dropdown';
-import {PlusCircle, DashCircle, Calendar2Week} from 'react-bootstrap-icons'
-import {useState} from 'react';
+import {PlusCircle, DashCircle, Calendar2Week, ExclamationCircle} from 'react-bootstrap-icons'
+import {useState, useEffect} from 'react';
 const DayInput = ({dayCount, setDayCount, }) => {
 
     const [error, setError] = useState(''); 
@@ -16,6 +16,11 @@ const DayInput = ({dayCount, setDayCount, }) => {
             setError('Days must be between 1 to 14.')
         }
     }
+    useEffect(()=>{
+        if(dayCount > 1 && dayCount < 14 && error){
+            setError('');
+        }
+    }, [dayCount,error])    
     return (
         <Dropdown >
             <Dropdown.Toggle as="div" className="p-2 border border-success rounded custom-dropdown-toggle">
@@ -45,8 +50,9 @@ const DayInput = ({dayCount, setDayCount, }) => {
                     
                     
                 </div>
-                { error && 
-                <div> {error}</div>}
+                
+                {error && <div className='text-danger'><ExclamationCircle className='me-2'/>{error}</div>}
+
                 
             </Dropdown.Menu>
         </Dropdown>

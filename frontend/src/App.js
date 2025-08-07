@@ -32,9 +32,6 @@ function App() {
             <AITrip plan={plan}/>
         </div>
     )
-
-      
-  
 }
 
 export default App;

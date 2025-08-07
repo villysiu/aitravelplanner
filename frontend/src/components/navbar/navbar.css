@@ -4,6 +4,11 @@
     --navbar-height: 10rem;
 }
 
+@media all and  (max-width: 575.98px) {
+    :root {
+        --navbar-height: 23rem;
+    }
+}
 
 .input-group-text {
     padding:0;
