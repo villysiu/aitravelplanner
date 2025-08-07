@@ -26,7 +26,7 @@ const AITrip = () =>{
             </div>
         );
     }
-    const {destination, dayCount, themes} = plan.input;
+    const {destination, dayCount} = plan.input;
     const {description, imageUrl, itineraries} = plan.aiOutput;
 
     return (
