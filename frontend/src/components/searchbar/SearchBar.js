@@ -39,7 +39,7 @@ const SearchBar = ({setPlan}) => {
                 }
             );
 
-            navigate('/results', { state: { plan: response.data } }); // use response.data
+    
             setPlan(response.data);
 
         } catch (error) {
