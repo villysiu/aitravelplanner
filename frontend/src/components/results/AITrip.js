@@ -1,31 +1,31 @@
 import React, { useEffect } from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+// import {useLocation, useNavigate} from "react-router-dom";
 import DailyPlan from "./DailyPlan";
 import {PrinterFill} from "react-bootstrap-icons";
 import Spinner from "react-bootstrap/Spinner";
 
-const AITrip = () =>{
-    const location = useLocation();
-    const navigate = useNavigate();
-    // console.log(location)
-    const plan = location.state?.plan;
+const AITrip = ({plan}) =>{
+    // const location = useLocation();
+    // const navigate = useNavigate();
+
+    // const plan = location.state?.plan;
     console.log(plan)
 
-    useEffect(() => {
-        if (!plan) {
-            navigate("/", { replace: true });
-        }
-    }, [plan, navigate]);
+    // useEffect(() => {
+    //     if (!plan) {
+    //         navigate("/", { replace: true });
+    //     }
+    // }, [plan, navigate]);
 
-    if (!plan){
-        return (
-            <div className="d-flex justify-content-center align-items-center vh-100">
-                <Spinner animation="border" role="status">
-                    <span className="visually-hidden">Redirecting...</span>
-                </Spinner>
-            </div>
-        );
-    }
+    // if (!plan){
+    //     return (
+    //         <div className="d-flex justify-content-center align-items-center vh-100">
+    //             <Spinner animation="border" role="status">
+    //                 <span className="visually-hidden">Redirecting...</span>
+    //             </Spinner>
+    //         </div>
+    //     );
+    // }
     const {destination, dayCount} = plan.input;
     const {description, imageUrl, itineraries} = plan.aiOutput;
 

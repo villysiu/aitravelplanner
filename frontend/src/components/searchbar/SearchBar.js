@@ -1,7 +1,7 @@
 import './searchbar.css';
 import React, { useState } from 'react';
 import axios from 'axios';
-import {useNavigate} from "react-router-dom";
+// import {useNavigate} from "react-router-dom";
 import DayInput from './DayInput';
 import DestinationInput from './DestinationInput';
 import ThemesInput from './ThemesInput';
@@ -9,16 +9,16 @@ import ThemesInput from './ThemesInput';
 import {Search} from "react-bootstrap-icons";
 import LoadingOverlay from "./LoadingOverlay";
 import {Col, Row} from 'react-bootstrap';
+import { response } from './SampleAiOutput'
 
-
-const SearchBar = () => {
+const SearchBar = ({setPlan}) => {
     const [destination, setDestination] = useState('');
     const [dayCount, setDayCount] = useState(3);
     const [themes, setThemes] = useState([]);
 
     const [loading, setLoading] = useState(false);
     // const [error, setError] = useState('');
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     
     const handlePlan = async (e) => {
@@ -29,16 +29,18 @@ const SearchBar = () => {
         setLoading(true);
         // setError('');
         try {
-            const response = await axios.post(
-                "https://aitravelplanner-villy.netlify.app/.netlify/functions/itinerary", 
-                { 
-                    destination,
-                    dayCount,
-                    themes
-                }
-            );
-            navigate('/results', { state: { plan: response.data } }); // use response.data
+            
+            // const response = await axios.post(
+            //     "https://aitravelplanner-villy.netlify.app/.netlify/functions/itinerary", 
+            //     { 
+            //         destination,
+            //         dayCount,
+            //         themes
+            //     }
+            // );
 
+            // navigate('/results', { state: { plan: response.data } }); // use response.data
+            setPlan(response.data);
 
         } catch (error) {
             console.error(error);
