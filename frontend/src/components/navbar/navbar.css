@@ -4,6 +4,11 @@
     --navbar-height: 10rem;
 }
 
+@media all and  (max-width: 575.98px) {
+    :root {
+        --navbar-height: 23rem;
+    }
+}
 
 .input-group-text {
     padding:0;
@@ -42,6 +47,7 @@
 .link-logo, .link-logo:hover, .link-logo:active{
     color: black;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .logo-col {
